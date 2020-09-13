@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UniversityMVC.Models.Group>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Groups</h2>
+<h3 style="color: green; font-weight: bold;">@TempData["GroupDeleted"]</h3>
+<h3 style="color: green; font-weight: bold;">@TempData["GroupEdit"]</h3>
+<h3 style="color: green; font-weight: bold;">@TempData["GroupCreated"]</h3>
+<h3 style="color: red; font-weight: bold;">@TempData["CountStudentsError"]</h3>
+
+
+<p>
+    <a asp-action="Create">Create New Group</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Students" asp-action="StudentsView" asp-route-id="@item.GroupId">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses.Name)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.GroupId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.GroupId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.GroupId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

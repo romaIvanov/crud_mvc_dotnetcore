@@ -1,0 +1,45 @@
+﻿@model IEnumerable<UniversityMVC.Models.Course>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h2>Courses</h2>
+    <h3 style="color: green; font-weight: bold;">@TempData["CourseDeleted"]</h3>
+    <h3 style="color: green; font-weight: bold;">@TempData["CourseCreated"]</h3>
+    <h3 style="color: green; font-weight: bold;">@TempData["CourseEditet"]</h3>
+    <p>
+        <a asp-action="Create">Create New Course</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th style="width: 70%">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Groups" asp-action="GroupsView" asp-route-id="@item.CourseId">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

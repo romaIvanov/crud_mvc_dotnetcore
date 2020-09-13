@@ -1,0 +1,36 @@
+﻿@model IEnumerable<UniversityMVC.Models.Group>
+
+@{
+    ViewData["Title"] = "GroupsView";
+}
+
+<h2>Groups</h2>
+<h3 style="color: red; font-weight: bold;">@ViewBag.CountGroupsLessZero</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Students" asp-action="StudentsView" asp-route-id="@item.GroupId">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.GroupId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.GroupId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.GroupId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
